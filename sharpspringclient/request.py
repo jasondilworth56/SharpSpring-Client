@@ -43,9 +43,12 @@ class SharpSpringRequest(object):
     def data(self):
         data = self._data
         params = self._params
-        params['where'] = self._where or {}
-        params['limit'] = self._limit or ''
-        params['offset'] = self._offset or ''
+        if self._where:
+            params['where'] = self._where
+        if self._limit:
+            params['limit'] = self._limit
+        if self._offset:
+            params['offset'] = self._offset
         data['params'] = params
 
         return data
